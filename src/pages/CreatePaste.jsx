@@ -102,7 +102,7 @@ export default function CreatePaste() {
           </button>
 
           {/* Result */}
-          {pasteData.id && (
+          {pasteData?.id && (
             <div className="mt-10 space-y-5">
               {/* Gradient animated border */}
               <div
