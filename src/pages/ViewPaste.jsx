@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ExpirePage from "../components/ExpirePage";
 import Loader from "../components/Loader";
+import { CheckCheck, Copy } from "lucide-react";
 
 
 
@@ -9,6 +10,15 @@ export default function ViewPaste() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
+  const [isTxtCopied, setIsTxtCopied] = useState(false)
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(data.content); setIsTxtCopied(true);
+
+    setTimeout(() => {
+      setIsTxtCopied(false);
+    }, 1000);
+  }
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/pastes/${id}`)
@@ -34,10 +44,12 @@ export default function ViewPaste() {
   }
 
 
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
       <div className="max-w-3xl mx-auto px-6 pt-24">
-  
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight">
             Secure <span className="text-indigo-400">Paste</span>
@@ -47,31 +59,42 @@ export default function ViewPaste() {
           </p>
         </div>
 
-  
+
         <div className="bg-slate-900/70 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl">
           <pre className="bg-slate-950 border border-slate-800 rounded-xl p-5 text-slate-200 whitespace-pre-wrap break-words max-h-[60vh] overflow-auto">
             {data.content}
+
           </pre>
 
-           
-          <div className="mt-6 flex flex-wrap gap-6 text-sm text-slate-400">
-            {data.viewsRemaining !== null && (
-              <div>
-                <span className="text-slate-500">Views remaining</span>
-                <p className="text-white font-medium">
-                  {data.viewsRemaining}
-                </p>
-              </div>
-            )}
+          <div className="flex justify-between items-end " >
 
-            {data.expiresAt && (
-              <div>
-                <span className="text-slate-500">Expires at</span>
-                <p className="text-white font-medium">
-                  {new Date(data.expiresAt).toLocaleString()}
-                </p>
-              </div>
-            )}
+            <div className="mt-6 flex flex-wrap gap-6 text-sm text-slate-400">
+              {data.viewsRemaining !== null && (
+                <div>
+                  <span className="text-slate-500">Views remaining</span>
+                  <p className="text-white font-medium">
+                    {data.viewsRemaining}
+                  </p>
+                </div>
+              )}
+
+              {data.expiresAt && (
+                <div>
+                  <span className="text-slate-500">Expires at</span>
+                  <p className="text-white font-medium">
+                    {new Date(data.expiresAt).toLocaleString()}
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className={`flex gap-2 items-end cursor-pointer ${isTxtCopied ? "text-indigo-400" : "text-gray-400"}  `} onClick={handleCopy}>
+              {isTxtCopied ?
+                <CheckCheck />
+                :
+                <Copy />
+              }
+              {isTxtCopied ? "Copied" : "Copy"}
+            </div>
           </div>
         </div>
       </div>

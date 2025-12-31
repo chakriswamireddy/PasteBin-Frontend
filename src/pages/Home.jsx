@@ -6,7 +6,7 @@ function Home() {
  
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
         <h1 className="text-xl font-semibold tracking-tight">
-          Paste<span className="text-indigo-400">Vault</span>
+          Paste<span className="text-indigo-400">Bin</span>
         </h1>
         <Link
           to="/create"
