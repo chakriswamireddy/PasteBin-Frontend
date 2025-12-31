@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
-      {/* Navbar */}
+ 
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
         <h1 className="text-xl font-semibold tracking-tight">
           Paste<span className="text-indigo-400">Vault</span>
@@ -16,7 +16,7 @@ function Home() {
         </Link>
       </nav>
 
-      {/* Hero Section */}
+ 
       <main className="max-w-7xl mx-auto px-6 mt-24">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-bold leading-tight">
@@ -38,17 +38,17 @@ function Home() {
             >
               Create a Paste
             </Link>
-            <a
-              href="#how-it-works"
+             <Link
+              to="/how-it-works"
               className="px-6 py-3 rounded-lg border border-slate-700 hover:bg-slate-800 transition"
             >
               How it works
-            </a>
+            </Link>
           </div>
         </div>
       </main>
 
-      {/* Features */}
+ 
       <section
         id="how-it-works"
         className="max-w-7xl mx-auto px-6 mt-32 grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -67,7 +67,7 @@ function Home() {
         />
       </section>
 
-      {/* Footer */}
+ 
       <footer className="mt-32 border-t border-slate-800 py-6 text-center text-slate-500 text-sm">
         Built for secure, temporary sharing.
       </footer>

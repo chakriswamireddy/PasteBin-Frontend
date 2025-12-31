@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 
 
@@ -39,7 +40,7 @@ export default function CreatePaste() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
       <div className="max-w-3xl mx-auto px-6 pt-24">
-        {/* Header */}
+        
         <div className="mb-10">
           <h1 className="text-4xl font-bold tracking-tight">
             Create a <span className="text-indigo-400">Paste</span>
@@ -49,9 +50,9 @@ export default function CreatePaste() {
           </p>
         </div>
 
-        {/* Card */}
+        
         <div className="bg-slate-900/70 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl">
-          {/* Textarea */}
+         
           <label className="block text-sm font-medium text-slate-300 mb-2">
             Paste Content
           </label>
@@ -63,7 +64,7 @@ export default function CreatePaste() {
             className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
           />
 
-          {/* Options */}
+         
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">
@@ -92,7 +93,7 @@ export default function CreatePaste() {
             </div>
           </div>
 
-          {/* Submit */}
+         
           <button
             onClick={handleSubmit}
             disabled={loading || !content}
@@ -101,10 +102,10 @@ export default function CreatePaste() {
             {loading ? "Creating..." : "Create Paste"}
           </button>
 
-          {/* Result */}
+         
           {pasteData?.id && (
             <div className="mt-10 space-y-5">
-              {/* Gradient animated border */}
+              
               <div
                 onClick={() => navigate(`/pastes/${pasteData.id}`)}
                 className="relative cursor-pointer rounded-2xl p-[2px]
@@ -116,9 +117,9 @@ export default function CreatePaste() {
                     Your paste is ready
                   </p>
 
-                  <p className="text-indigo-400 font-medium break-all">
+                  <Link to={`${pasteData.url}`} className="text-indigo-400 font-medium break-all">
                      {pasteData?.url}
-                  </p>
+                  </Link>
 
                   <p className="mt-2 text-xs text-slate-500">
                     Click to open paste
